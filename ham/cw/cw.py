@@ -13,7 +13,7 @@ class Cw:
             "j": ".---",
             "k": "-.-",
             "l": ".-..",
-            "m": "mm",
+            "m": "--",
             "n": "-.",
             "o": "---",
             "p": ".--.",
@@ -28,3 +28,9 @@ class Cw:
             "y": "-.--",
             "z": "--..",
         }
+
+    def letter_to_dot_dash(self, letter):
+        if letter.lower() in self.alpha:
+            return self.alpha[letter.lower()]
+        else:
+            raise ValueError

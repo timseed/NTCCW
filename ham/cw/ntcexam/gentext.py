@@ -25516,6 +25516,7 @@ zygote
                     wordlist.append(picked_word)
         return wordlist
 
+    @staticmethod
     def group_of_five(self, word_list):
         # Make 1 big string ... But we only need
         # 5 groups of 5 per line
@@ -25533,14 +25534,9 @@ zygote
         )
         return test_text
 
-    def NTC_Test(self) -> str:
+    @staticmethod
+    def ntctest(self) -> str:
         word_list = self.getdata()
         print(f"words are {word_list}")
         test_text = self.group_of_five(word_list)
         return test_text
-
-
-if __name__ == "__main__":
-    g = GenText()
-    test = g.NTC_Test()
-    print(f"Test_text \n{test}")
