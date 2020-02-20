@@ -5,10 +5,10 @@ if __name__ == "__main__":
     g = GenText()
     test = g.ntctest()
     print(f"Test_text \n{test}")
-    line1=test.split('\n')[0]
+    line1 = test.split("\n")[0]
     print(f"Line1  \n{line1}")
     morse = Cw()
-    #morse.text_to_wav(line1)
+    paris=morse.encode_morse("paris")
+    # morse.text_to_wav(line1)
     p = morse.signal(line1)
-    morse.wav(p,'cw.wav')
-
+    morse.wav(p, "cw.wav")
