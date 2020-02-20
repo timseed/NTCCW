@@ -25516,7 +25516,6 @@ zygote
                     wordlist.append(picked_word)
         return wordlist
 
-    @staticmethod
     def group_of_five(self, word_list):
         # Make 1 big string ... But we only need
         # 5 groups of 5 per line
@@ -25528,13 +25527,12 @@ zygote
         )
         test_text = "".join(
             [
-                (letters_and_spaces[i : i + 30] + " AA\n")
+                (letters_and_spaces[i : i + 30] + " aa\n")
                 for i in range(0, len(letters_and_spaces), 30)
             ]
         )
         return test_text
 
-    @staticmethod
     def ntctest(self) -> str:
         word_list = self.getdata()
         print(f"words are {word_list}")

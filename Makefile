@@ -24,7 +24,7 @@ coverage:
 	$(RM)  coverage.txt
 	-$(PYCOV) run    -m "ham.cw.ntcexam"
 	-$(PYCOV) run -a -m pytest
-	$(PYCOV) report -m > ./coverage.txt
+	$(PYCOV) report --source=$(SRC) -m > ./coverage.txt
 
 .DEFAULT_GOAL := fullcheck
 fullcheck:
