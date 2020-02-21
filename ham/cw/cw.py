@@ -109,7 +109,7 @@ class Cw:
         s = self.MorseCode[ch]
         return self.len_dits(s)
 
-    def encode_morse(self, cws: str) -> str:
+    def cw_timing(self, cws: str) -> str:
         """
         Encode string of characters to a Morse code string (dit='.'/dah='-')
         :param cws: cw String 'abc '
@@ -152,7 +152,7 @@ class Cw:
         :return: pandas dataframe with signals and  symbol probabilities
         """
         cw_str = "paris"
-        cws = self.encode_morse(cw_str)
+        cws = self.cw_timing(cw_str)
 
         # calculate how many milliseconds this string will take at speed WPM
         dit_len = int(1200 / self.WPM)  # dit length in msec, given WPM
