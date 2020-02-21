@@ -8,7 +8,9 @@ class TestCw(TestCase):
         self.dot = self.morse.dot
         self.dash = self.morse.dash
         self.gap = self.morse.gap
-        self.end = self.morse.end
+        self.endletter = self.morse.endletter
+        self.endword = self.morse.endword
+
 
     def test_Cw_Exists(self):
         self.assertIsInstance(self.morse, Cw)
@@ -84,7 +86,7 @@ class TestCw(TestCase):
 
     def test_cw_timing(self):
         self.assertEqual(
-            self.morse.cw_timing("a"), self.dot + self.gap + self.dash + self.end
+            self.morse.cw_timing("a"), self.dot + self.gap + self.dash + self.endword
         )
         self.assertEqual(
             self.morse.cw_timing("b"),
@@ -95,7 +97,7 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("c"),
@@ -106,13 +108,13 @@ class TestCw(TestCase):
             + self.dash
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("d"),
-            self.dash + self.gap + self.dot + self.gap + self.dot + self.end,
+            self.dash + self.gap + self.dot + self.gap + self.dot + self.endword,
         )
-        self.assertEqual(self.morse.cw_timing("e"), self.dot + self.end)
+        self.assertEqual(self.morse.cw_timing("e"), self.dot + self.endword)
         self.assertEqual(
             self.morse.cw_timing("f"),
             self.dot
@@ -122,11 +124,11 @@ class TestCw(TestCase):
             + self.dash
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("g"),
-            self.dash + self.gap + self.dash + self.gap + self.dot + self.end,
+            self.dash + self.gap + self.dash + self.gap + self.dot + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("h"),
@@ -137,10 +139,10 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
-            self.morse.cw_timing("i"), self.dot + self.gap + self.dot + self.end
+            self.morse.cw_timing("i"), self.dot + self.gap + self.dot + self.endword
         )
         self.assertEqual(
             self.morse.cw_timing("j"),
@@ -151,11 +153,11 @@ class TestCw(TestCase):
             + self.dash
             + self.gap
             + self.dash
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("k"),
-            self.dash + self.gap + self.dot + self.gap + self.dash + self.end,
+            self.dash + self.gap + self.dot + self.gap + self.dash + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("l"),
@@ -166,17 +168,17 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
-            self.morse.cw_timing("m"), self.dash + self.gap + self.dash + self.end
+            self.morse.cw_timing("m"), self.dash + self.gap + self.dash + self.endword
         )
         self.assertEqual(
-            self.morse.cw_timing("n"), self.dash + self.gap + self.dot + self.end
+            self.morse.cw_timing("n"), self.dash + self.gap + self.dot + self.endword
         )
         self.assertEqual(
             self.morse.cw_timing("o"),
-            self.dash + self.gap + self.dash + self.gap + self.dash + self.end,
+            self.dash + self.gap + self.dash + self.gap + self.dash + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("p"),
@@ -187,7 +189,7 @@ class TestCw(TestCase):
             + self.dash
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("q"),
@@ -198,20 +200,20 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dash
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("r"),
-            self.dot + self.gap + self.dash + self.gap + self.dot + self.end,
+            self.dot + self.gap + self.dash + self.gap + self.dot + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("s"),
-            self.dot + self.gap + self.dot + self.gap + self.dot + self.end,
+            self.dot + self.gap + self.dot + self.gap + self.dot + self.endword,
         )
-        self.assertEqual(self.morse.cw_timing("t"), self.dash + self.end)
+        self.assertEqual(self.morse.cw_timing("t"), self.dash + self.endword)
         self.assertEqual(
             self.morse.cw_timing("u"),
-            self.dot + self.gap + self.dot + self.gap + self.dash + self.end,
+            self.dot + self.gap + self.dot + self.gap + self.dash + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("v"),
@@ -222,11 +224,11 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dash
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("w"),
-            self.dot + self.gap + self.dash + self.gap + self.dash + self.end,
+            self.dot + self.gap + self.dash + self.gap + self.dash + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("x"),
@@ -237,7 +239,7 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dash
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("y"),
@@ -248,7 +250,7 @@ class TestCw(TestCase):
             + self.dash
             + self.gap
             + self.dash
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("z"),
@@ -259,10 +261,10 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
-            self.morse.cw_timing("A"), self.dot + self.gap + self.dash + self.end
+            self.morse.cw_timing("A"), self.dot + self.gap + self.dash + self.endword
         )
         self.assertEqual(
             self.morse.cw_timing("B"),
@@ -273,7 +275,7 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("C"),
@@ -284,13 +286,13 @@ class TestCw(TestCase):
             + self.dash
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("D"),
-            self.dash + self.gap + self.dot + self.gap + self.dot + self.end,
+            self.dash + self.gap + self.dot + self.gap + self.dot + self.endword,
         )
-        self.assertEqual(self.morse.cw_timing("E"), self.dot + self.end)
+        self.assertEqual(self.morse.cw_timing("E"), self.dot + self.endword)
         self.assertEqual(
             self.morse.cw_timing("F"),
             self.dot
@@ -300,11 +302,11 @@ class TestCw(TestCase):
             + self.dash
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("G"),
-            self.dash + self.gap + self.dash + self.gap + self.dot + self.end,
+            self.dash + self.gap + self.dash + self.gap + self.dot + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("H"),
@@ -315,10 +317,10 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
-            self.morse.cw_timing("I"), self.dot + self.gap + self.dot + self.end
+            self.morse.cw_timing("I"), self.dot + self.gap + self.dot + self.endword
         )
         self.assertEqual(
             self.morse.cw_timing("J"),
@@ -329,11 +331,11 @@ class TestCw(TestCase):
             + self.dash
             + self.gap
             + self.dash
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("K"),
-            self.dash + self.gap + self.dot + self.gap + self.dash + self.end,
+            self.dash + self.gap + self.dot + self.gap + self.dash + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("L"),
@@ -344,17 +346,17 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
-            self.morse.cw_timing("M"), self.dash + self.gap + self.dash + self.end
+            self.morse.cw_timing("M"), self.dash + self.gap + self.dash + self.endword
         )
         self.assertEqual(
-            self.morse.cw_timing("N"), self.dash + self.gap + self.dot + self.end
+            self.morse.cw_timing("N"), self.dash + self.gap + self.dot + self.endword
         )
         self.assertEqual(
             self.morse.cw_timing("O"),
-            self.dash + self.gap + self.dash + self.gap + self.dash + self.end,
+            self.dash + self.gap + self.dash + self.gap + self.dash + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("P"),
@@ -365,7 +367,7 @@ class TestCw(TestCase):
             + self.dash
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("Q"),
@@ -376,20 +378,20 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dash
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("R"),
-            self.dot + self.gap + self.dash + self.gap + self.dot + self.end,
+            self.dot + self.gap + self.dash + self.gap + self.dot + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("S"),
-            self.dot + self.gap + self.dot + self.gap + self.dot + self.end,
+            self.dot + self.gap + self.dot + self.gap + self.dot + self.endword,
         )
-        self.assertEqual(self.morse.cw_timing("T"), self.dash + self.end)
+        self.assertEqual(self.morse.cw_timing("T"), self.dash + self.endword)
         self.assertEqual(
             self.morse.cw_timing("U"),
-            self.dot + self.gap + self.dot + self.gap + self.dash + self.end,
+            self.dot + self.gap + self.dot + self.gap + self.dash + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("V"),
@@ -400,11 +402,11 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dash
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("W"),
-            self.dot + self.gap + self.dash + self.gap + self.dash + self.end,
+            self.dot + self.gap + self.dash + self.gap + self.dash + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("X"),
@@ -415,7 +417,7 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dash
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("Y"),
@@ -426,7 +428,7 @@ class TestCw(TestCase):
             + self.dash
             + self.gap
             + self.dash
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("Z"),
@@ -437,7 +439,7 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("0"),
@@ -450,7 +452,7 @@ class TestCw(TestCase):
             + self.dash
             + self.gap
             + self.dash
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("1"),
@@ -463,7 +465,7 @@ class TestCw(TestCase):
             + self.dash
             + self.gap
             + self.dash
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("2"),
@@ -476,7 +478,7 @@ class TestCw(TestCase):
             + self.dash
             + self.gap
             + self.dash
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("3"),
@@ -489,7 +491,7 @@ class TestCw(TestCase):
             + self.dash
             + self.gap
             + self.dash
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("4"),
@@ -502,7 +504,7 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dash
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("5"),
@@ -515,7 +517,7 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("6"),
@@ -528,7 +530,7 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("7"),
@@ -541,7 +543,7 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("8"),
@@ -554,7 +556,7 @@ class TestCw(TestCase):
             + self.dot
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
         self.assertEqual(
             self.morse.cw_timing("9"),
@@ -567,25 +569,24 @@ class TestCw(TestCase):
             + self.dash
             + self.gap
             + self.dot
-            + self.end,
+            + self.endword,
         )
 
     def test_encode_paris(self):
-        self.assertEqual(self.morse.cw_timing("paris"), ".g-g-g.g.g-g.g-g.g.g.g.g.g._")
+        self.assertEqual(self.morse.cw_timing("paris"), ".g-g-g.e.g-e.g-g.e.g.e.g.g._")
         paris_timing = self.morse.cw_timing("paris")
-        self.assertEqual(paris_timing.count("g"), 13, "Gap count")
-        self.assertEqual(paris_timing.count("."), 10, "Dot count")
-        self.assertEqual(paris_timing.count("-"), 4, "Dash count")
-        self.assertEqual(paris_timing.count("_"), 1, "End count")
+        self.assertEqual(paris_timing.count(self.gap), 9, "Gap count")
+        self.assertEqual(paris_timing.count(self.dot), 10,"Dot count")
+        self.assertEqual(paris_timing.count(self.dash), 4, "Dash count")
+        self.assertEqual(paris_timing.count(self.endletter), 4, "EndLetter count")
+        self.assertEqual(paris_timing.count(self.endword), 1, "EndWord count")
         # dot + gap are both 1
         # dash is 4
         # end is 7
         # 13+10 + 4*3 + 7*1
         # 23+12+7 => 42
 
-    def test_len_dits(self):
-        # Paris should be 50 dits in length
-        self.assertEqual(50, 50)
+
 
     def test_len_chr(self):
         self.assertEqual(self.morse.len_chr("p"), 8)
@@ -595,4 +596,4 @@ class TestCw(TestCase):
         self.assertEqual(self.morse.len_chr("s"), 3)
 
     def test_len_dits(self):
-        self.assertEqual(self.morse.len_dits(self.morse.cw_timing("paris")), 42)
+        self.assertEqual(self.morse.len_dits(self.morse.cw_timing("paris")), 50)

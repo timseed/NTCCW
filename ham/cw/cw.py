@@ -32,7 +32,8 @@ class Cw:
         self.dot = "."
         self.dash = "-"
         self.gap = "g"
-        self.end = "_"
+        self.endletter = 'e'
+        self.endword = "_"
         self.MorseCode = {
             "!": "-.-.--",
             "$": "...-..-",
@@ -121,27 +122,27 @@ class Cw:
         for ch in cws.lower():
             try:  # try to find CW sequence from Codebook
                 s += self.gap.join(self.MorseCode[ch])
-                if ch != self.gap:
-                    s += self.gap  # Interblock gap
+                s += self.endletter  # End of letter gap
             except IndexError:
-                if ch == self.gap:
-                    s.append(self.end)
+
                 print("error: %s not in Codebook" % ch)
                 continue
 
-        return "".join(s).rstrip(self.end).rstrip(self.gap) + self.end
+        return "".join(s).rstrip(self.endword).rstrip(self.endletter) + self.endword
 
     def len_dits(self, cws):
         # length of string in dit units, include spaces
         val = 0
         for ch in cws:
-            if ch == ".":  # dit len + el space
+            if ch == self.dot:  # dit len + el space
                 val += 1
-            if ch == "-":  # dah len + el space
+            if ch == self.dash:  # dah len + el space
                 val += 3
             if ch == self.gap:  # el space
                 val += 1
-            if ch == self.end:  # el space
+            if ch == self.endletter:  # el space
+                val += 3
+            if ch == self.endword:  # el space
                 val += 7
         return val
 
