@@ -31,8 +31,8 @@ class Cw:
         self.Tq = tq
         self.dot = "."
         self.dash = "-"
-        self.gap = 'g'
-        self.end = '_'
+        self.gap = "g"
+        self.end = "_"
         self.MorseCode = {
             "!": "-.-.--",
             "$": "...-..-",
@@ -121,8 +121,8 @@ class Cw:
         for ch in cws.lower():
             try:  # try to find CW sequence from Codebook
                 s += self.gap.join(self.MorseCode[ch])
-                if ch != self.gap :
-                    s += self.gap   # Interblock gap
+                if ch != self.gap:
+                    s += self.gap  # Interblock gap
             except IndexError:
                 if ch == self.gap:
                     s.append(self.end)
