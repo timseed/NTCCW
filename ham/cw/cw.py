@@ -29,8 +29,10 @@ class Cw:
         """
         self.WPM = wpm
         self.Tq = tq
-        self.gap = ' '
-        self.endword ='_'
+        self.dot = "."
+        self.dash = "-"
+        self.gap = 'g'
+        self.end = '_'
         self.MorseCode = {
             "!": "-.-.--",
             "$": "...-..-",
@@ -123,11 +125,11 @@ class Cw:
                     s += self.gap   # Interblock gap
             except IndexError:
                 if ch == self.gap:
-                    s.append(self.endword)
+                    s.append(self.end)
                 print("error: %s not in Codebook" % ch)
                 continue
 
-        return "".join(s).rstrip(self.endword).rstrip(self.gap) + self.endword
+        return "".join(s).rstrip(self.end).rstrip(self.gap) + self.end
 
     def len_dits(self, cws):
         # length of string in dit units, include spaces
@@ -139,7 +141,7 @@ class Cw:
                 val += 3
             if ch == self.gap:  # el space
                 val += 1
-            if ch == self.endword:  # el space
+            if ch == self.end:  # el space
                 val += 7
         return val
 
