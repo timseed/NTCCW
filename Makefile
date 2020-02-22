@@ -21,6 +21,9 @@ test:
 build:
 	$(PYTHON) setup.py sdist
 
+paris:
+	$(PYTHON) -m "ham.cw.paris"
+
 coverage:
 	$(PYCOV) erase
 	$(RM)  coverage.txt
