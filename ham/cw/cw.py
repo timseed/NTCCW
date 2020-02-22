@@ -32,7 +32,7 @@ class Cw:
         self.dot = "."
         self.dash = "-"
         self.gap = "g"
-        self.endletter = 'e'
+        self.endletter = "e"
         self.endword = "_"
         self.MorseCode = {
             "!": "-.-.--",
@@ -110,7 +110,7 @@ class Cw:
         :return: length in dits
         """
         s = self.MorseCode[ch]
-        return self.len_dits(s)
+        return self.length_in_dits(s)
 
     def cw_timing(self, cws: str) -> str:
         """
@@ -124,13 +124,14 @@ class Cw:
                 s += self.gap.join(self.MorseCode[ch])
                 s += self.endletter  # End of letter gap
             except IndexError:
-
+                if ch == " ":
+                    s += self.endword
                 print("error: %s not in Codebook" % ch)
                 continue
 
         return "".join(s).rstrip(self.endword).rstrip(self.endletter) + self.endword
 
-    def len_dits(self, cws):
+    def length_in_dits(self, cws):
         # length of string in dit units, include spaces
         val = 0
         for ch in cws:
@@ -146,6 +147,51 @@ class Cw:
                 val += 7
         return val
 
+    def signal2(self, cw_str, sigma=0.0, padded=False, verbose=False):
+        """
+        :param cw_str: for given CW string i.e. 'ABC '
+        :param sigma: adds gaussian noise with standard deviation of sigma to signal
+        :param padded:
+        :param verbose:
+        :return: pandas dataframe with signals and  symbol probabilities
+        """
+        cw_str = "paris " * 5
+        cws = self.cw_timing(cw_str)
+
+        # calculate how many milliseconds this string will take at speed WPM
+        dit_len = int(1200 / self.WPM)  # dit length in msec, given WPM
+        print(f"dit_len is {dit_len}")
+        if padded:
+            msec = dit_len * self.length_in_dits(cws) * 32 + 7  # padded to 32
+        else:
+            msec = dit_len * (
+                self.length_in_dits(cws) + 7
+            )  # reserve +7 for the last pause
+        msec = int(msec)
+        print(f"msec is set to {msec}")
+
+        dit_bytes = np.ones(dit_len)
+        dah_bytes = np.ones(3 * dit_len)
+        gap_bytes = np.zeros(dit_len)
+        endletter_bytes = np.zeros(3 * dit_len)
+        endword_bytes = np.zeros(7 * dit_len)
+        sample_rate = 8000
+        audio_buff = []
+
+        for ch in cws:
+            if ch == self.dot:
+                audio_buff.append([n * 1 for n in range(0, 1 * msec * sample_rate)])
+            if ch == self.dash:
+                audio_buff.append([n * 1 for n in range(0, 3 * msec * sample_rate)])
+            elif ch == self.gap:
+                audio_buff.append([n * 0 for n in range(0, 1 * msec * sample_rate)])
+            elif ch == self.endletter:
+                audio_buff.append([n * 0 for n in range(0, 3 * msec * sample_rate)])
+            elif ch == self.endword:
+                audio_buff.append(([n * 0 for n in range(0, 7 * msec * sample_rate)]))
+        print(f"Len of audio_buf is {len(audio_buff)}")
+        return audio_buff
+
     def signal(self, cw_str, sigma=0.0, padded=False, verbose=False):
         """
         :param cw_str: for given CW string i.e. 'ABC '
@@ -154,22 +200,27 @@ class Cw:
         :param verbose:
         :return: pandas dataframe with signals and  symbol probabilities
         """
-        cw_str = "paris"
+        cw_str = "paris " * 5
         cws = self.cw_timing(cw_str)
 
         # calculate how many milliseconds this string will take at speed WPM
         dit_len = int(1200 / self.WPM)  # dit length in msec, given WPM
         print(f"dit_len is {dit_len}")
         if padded:
-            msec = dit_len * self.len_dits(cw_str) * 32 + 7  # padded to 32
+            msec = dit_len * self.length_in_dits(cws) * 32 + 7  # padded to 32
         else:
             msec = dit_len * (
-                self.len_dits(cw_str) + 7
+                self.length_in_dits(cws) + 7
             )  # reserve +7 for the last pause
         msec = int(msec)
         print(f"msec is set to {msec}")
         t = np.arange(msec) / 1000.0  # time array in seconds
         ix = list(range(0, int(msec)))  # index for arrays
+        z = np.zeros(dit_len)
+        z2 = np.zeros(2 * dit_len)
+        z4 = np.zeros(4 * dit_len)
+        dit = np.ones(dit_len)
+        dah = np.ones(3 * dit_len)
 
         # Create a DataFrame and initialize
         col = ["t", "sig", "dit", "dah", "ele", "chr", "wrd", "spd"]
@@ -198,7 +249,7 @@ class Cw:
             prct = 100.0 * float(i) / float(msec)
             if (i % 1000) == 0 and verbose:
                 print("Done: " + "{:.6f}".format(prct) + "%")
-            if ch == ".":
+            if ch == self.dot:
                 dur = len(dit)
                 P.sig[i : i + dur] = dit
                 P.dit[i : i + dur] = dit
@@ -210,7 +261,7 @@ class Cw:
                 i += dur
                 n += dur
 
-            if ch == "-":
+            if ch == self.dash:
                 dur = len(dah)
                 P.sig[i : i + dur] = dah
                 P.dah[i : i + dur] = dah
@@ -222,7 +273,7 @@ class Cw:
                 i += dur
                 n += dur
 
-            if ch == " ":
+            if ch == self.endletter:
                 dur = len(z2)
                 P.sig[i : i + dur] = z2
                 P.chr[i : i + dur] = np.ones(dur)
@@ -239,7 +290,7 @@ class Cw:
                         i += dur
                 n = 0
 
-            if ch == "_":
+            if ch == self.endword:
                 dur = len(z4)
                 P.sig[i : i + dur] = z4
                 P.wrd[i : i + dur] = np.ones(dur)
@@ -262,6 +313,15 @@ class Cw:
         if sigma > 0.0:
             P.sig += normal(0, sigma, len(P.sig))
         return P
+
+    def wav2(self, data_array, filename="cw.wav"):
+        bit_stream = []
+        sample_rate = 8000
+        for n in range(0, len(data_array)):
+            bit_stream.append(sin(80 * 100 * 2 * pi) * data_array[n])
+        # bit_stream = sin(80 * t * 2 * pi) * w
+        # plt.plot(t[0:200], s[0:200])
+        sw.write(filename, sample_rate, np.array(bit_stream))
 
     def wav(self, pandas_obj, filename="cw.wav"):
         """

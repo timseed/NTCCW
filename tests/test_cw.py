@@ -11,7 +11,6 @@ class TestCw(TestCase):
         self.endletter = self.morse.endletter
         self.endword = self.morse.endword
 
-
     def test_Cw_Exists(self):
         self.assertIsInstance(self.morse, Cw)
 
@@ -576,17 +575,17 @@ class TestCw(TestCase):
         self.assertEqual(self.morse.cw_timing("paris"), ".g-g-g.e.g-e.g-g.e.g.e.g.g._")
         paris_timing = self.morse.cw_timing("paris")
         self.assertEqual(paris_timing.count(self.gap), 9, "Gap count")
-        self.assertEqual(paris_timing.count(self.dot), 10,"Dot count")
+        self.assertEqual(paris_timing.count(self.dot), 10, "Dot count")
         self.assertEqual(paris_timing.count(self.dash), 4, "Dash count")
         self.assertEqual(paris_timing.count(self.endletter), 4, "EndLetter count")
         self.assertEqual(paris_timing.count(self.endword), 1, "EndWord count")
         # dot + gap are both 1
+        # gap is 9
+        # dot is 10
         # dash is 4
-        # end is 7
-        # 13+10 + 4*3 + 7*1
-        # 23+12+7 => 42
-
-
+        # endletter is 3
+        # endwords is 7
+        # 9+10+12+12+7=50
 
     def test_len_chr(self):
         self.assertEqual(self.morse.len_chr("p"), 8)
@@ -596,4 +595,4 @@ class TestCw(TestCase):
         self.assertEqual(self.morse.len_chr("s"), 3)
 
     def test_len_dits(self):
-        self.assertEqual(self.morse.len_dits(self.morse.cw_timing("paris")), 50)
+        self.assertEqual(self.morse.length_in_dits(self.morse.cw_timing("paris")), 50)
