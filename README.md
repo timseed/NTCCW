@@ -87,14 +87,14 @@ I spent quite come time trying to ensure that the speed that the morse code is g
 
 To generate the Paris.wav file, simply
 
-   python -m ham.cq.paris
+    python -m ham.cq.paris
 
 Then play using which every Wav played you want - I checked it on linux by
  
-   time afplay paris.wav
+    time afplay paris.wav
 
 I get the time back of
 
-   60.32 seconds .... 
+    60.32 seconds .... 
 
 Which if you will excuse me - is just about ok. 
