@@ -12,6 +12,8 @@ format:
 	$(PYTHON) -m black $(SRC)
 	$(PYTHON) -m black $(PYTEST)
 
+dist:
+	$(PYTHON) setup.py sdist
 
 test:
 	$(PYTHON) -m pytest $(PYTEST)

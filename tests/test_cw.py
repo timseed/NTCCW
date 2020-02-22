@@ -5,8 +5,8 @@ from ham.cw import Cw
 class TestCw(TestCase):
     def setUp(self) -> None:
         self.morse = Cw()
-        self.dot = self.morse.dot
-        self.dash = self.morse.dash
+        self.dot = self.morse.dit
+        self.dash = self.morse.dah
         self.gap = self.morse.gap
         self.endletter = self.morse.endletter
         self.endword = self.morse.endword

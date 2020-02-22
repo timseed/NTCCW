@@ -25535,6 +25535,6 @@ zygote
 
     def ntctest(self) -> str:
         word_list = self.getdata()
-        print(f"words are {word_list}")
+        #print(f"words are {word_list}")
         test_text = self.group_of_five(word_list)
         return test_text
