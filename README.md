@@ -81,3 +81,21 @@ I currently believe that it is.
 
 I suggest that you clone the repo which can be found at https://github.com/timseed/NTCCW.git 
 
+
+## Speed check
+
+I spent quite come time trying to ensure that the speed that the morse code is generated is as accurate as it can be. So I added a special module called *PARIS* - why ? If you can send "paris" say 5 times in a minute .... "parisparisparisparisparisparis " (note the ending space). then this morse speed is said to be 5 WPM (Words per minute). 
+
+To generate the Paris.wav file, simply
+
+   python -m ham.cq.paris
+
+Then play using which every Wav played you want - I checked it on linux by
+ 
+   time afplay paris.wav
+
+I get the time back of
+
+   60.32 seconds .... 
+
+Which if you will excuse me - is just about ok. 
