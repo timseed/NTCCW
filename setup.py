@@ -16,6 +16,8 @@ setup(
     # pip install -e .["dev"]
     extras_require = {
         'dev': [
+            'black',
+            'pylint',
             'pytest',
             'pytest-pep8',
             'pytest-cov',
