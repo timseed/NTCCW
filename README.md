@@ -67,4 +67,17 @@ So some points to note
   - If you miss a letter - leave a gap.... you may be able to guess the letter later.
   - try and enjoy morse code
 
+<<<<<<< HEAD
+=======
+## Time this takes
+
+The exam - will take aprox 400 seconds (6 mins and 30 seconds). I think you will be surprised however just how fast this time goes.
+
+# Programming Notes
+I have tried VERY VERY hard to ensure that the timing of this code generator is accurate. 
+I currently believe that it is.
+
+## Installing 
+
+I suggest that you clone the repo which can be found at https://github.com/timseed/NTCCW.git 
 

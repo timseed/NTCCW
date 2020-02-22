@@ -2,7 +2,6 @@ from random import randint
 
 
 class GenText:
-
     def __init__(self):
         self.words = """
 a
@@ -25494,16 +25493,18 @@ Zurich
 zygote
 """.lower().split()
 
-    def getdata(self,
-                occurrences=2,
-                word_length=5):
+    def getdata(self, occurrences=2, word_length=5):
         wordlist = []
         for loop in range(0, occurrences):
             # Start with the lower letters ... as they do not occurr that frequenctly.
             for n in range(26, 0, -1):
                 start_letter = chr(96 + n)
-                print(f"Processing {start_letter}")
-                starts_with = [w for w in self.words if (w.startswith(start_letter) and len(w) == word_length)]
+                # print(f"Processing {start_letter}")
+                starts_with = [
+                    w
+                    for w in self.words
+                    if (w.startswith(start_letter) and len(w) == word_length)
+                ]
                 # Generate 'occurrences' ...
                 word_to_get = [randint(1, len(starts_with)) for n in range(0, 1)]
                 try:
@@ -25520,17 +25521,20 @@ zygote
         # 5 groups of 5 per line
         # 5 lines ...
         # 5*5*5 -> 125 letters
-        letters = ''.join(word_list)[:125]
-        letters_and_spaces = ''.join([(letters[i:i + 5]) + ' ' for i in range(0, len(letters), 5)])
-        test_text = ''.join([(letters_and_spaces[i:i + 30]+" AA\n")  for i in range(0, len(letters_and_spaces), 30)])
+        letters = "".join(word_list)[:125]
+        letters_and_spaces = "".join(
+            [(letters[i : i + 5]) + " " for i in range(0, len(letters), 5)]
+        )
+        test_text = "".join(
+            [
+                (letters_and_spaces[i : i + 30] + " aa\n")
+                for i in range(0, len(letters_and_spaces), 30)
+            ]
+        )
         return test_text
 
-
-if __name__ == "__main__":
-    g = GenText()
-    word_list = g.getdata()
-    print(f"words are {word_list}")
-    test_text = g.group_of_five(word_list)
-
-    print(f"Test_text \n{test_text}")
-
+    def ntctest(self) -> str:
+        word_list = self.getdata()
+        #print(f"words are {word_list}")
+        test_text = self.group_of_five(word_list)
+        return test_text

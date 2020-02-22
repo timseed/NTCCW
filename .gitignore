@@ -1,0 +1,12 @@
+**__pycache__
+.idea
+**.DS_Store
+**.egg-info
+# No coverage needed
+coverage.txt
+.coverage
+build
+dist
+internal
+**.wav
+**.txt
