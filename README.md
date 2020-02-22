@@ -67,7 +67,6 @@ So some points to note
   - If you miss a letter - leave a gap.... you may be able to guess the letter later.
   - try and enjoy morse code
 
-<<<<<<< HEAD
 =======
 ## Time this takes
 
