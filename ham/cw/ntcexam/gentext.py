@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, shuffle
 
 
 class GenText:
@@ -25514,6 +25514,7 @@ zygote
                 # print(f"we have {start_letter}  {len(starts_with):6} We would pick {word_to_get} {words_to_add}")
                 for picked_word in words_to_add:
                     wordlist.append(picked_word)
+        shuffle(wordlist)
         return wordlist
 
     def group_of_five(self, word_list):
@@ -25527,7 +25528,7 @@ zygote
         )
         test_text = "".join(
             [
-                (letters_and_spaces[i : i + 30] + " aa\n")
+                (letters_and_spaces[i : i + 30].rstrip() + " aa \n")
                 for i in range(0, len(letters_and_spaces), 30)
             ]
         )
@@ -25535,6 +25536,6 @@ zygote
 
     def ntctest(self) -> str:
         word_list = self.getdata()
-        #print(f"words are {word_list}")
+        # print(f"words are {word_list}")
         test_text = self.group_of_five(word_list)
         return test_text

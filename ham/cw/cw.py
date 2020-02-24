@@ -184,7 +184,7 @@ class Cw:
                 )
             else:
                 print(f"Got unknown timing symbol {ch}")
-        #print("Audio generation completed")
+        # print("Audio generation completed")
         return np.array(wav_buff, dtype=np.int16)
 
     def make_audio(self, time: float = 1.0, frequency: int = 440) -> np.array:
@@ -207,11 +207,11 @@ class Cw:
     def wav(self, np_audio_data, filename="cw.wav"):
         sw.write(filename, int(self.audio_sample_rate), np.array(np_audio_data))
 
-    def text_to_wav(self, text:str, filename:str="cw.wav"):
+    def text_to_wav(self, text: str, filename: str = "cw.wav"):
         """
 
         :param text:
         :param filename:
         :return:
         """
-        return self.wav(self.signal(text.replace('\n','')), filename)
+        return self.wav(self.signal(text.replace("\n", "")), filename)
