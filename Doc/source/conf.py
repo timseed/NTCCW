@@ -14,7 +14,6 @@ import os
 import sys
 import ham.cw
 import ham.cw.ntcexam
-import ham.cw.paris
 
 import m2r
 
