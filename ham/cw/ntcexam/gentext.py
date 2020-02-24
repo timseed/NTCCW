@@ -1,7 +1,11 @@
-from random import randint
+from random import randint, shuffle
 
 
 class GenText:
+    """
+    Class to generate easy to check, complete word data suitable for NTC Morse code exam.
+    """
+
     def __init__(self):
         self.words = """
 a
@@ -25493,7 +25497,24 @@ Zurich
 zygote
 """.lower().split()
 
-    def getdata(self, occurrences=2, word_length=5):
+    def getdata(self, occurrences: int = 2, word_length: int = 5) -> list:
+        """
+        We have a large word list, as we would like to try and make the
+        exam marking as easy as possible.
+
+        The words are generated in Reverse alphabetical order (although this may change in the future).
+
+        :param occurrences: How many times to repeat the alphabet.
+        :param word_length: Desired Word length.
+        :return: List of strings.
+
+        Example:
+            from ham.cw.ntcexam import GenText
+            gt=GenText()
+            five_letter_words = gt.getdata()
+
+        There is no guarantee a word will not be repeated.
+        """
         wordlist = []
         for loop in range(0, occurrences):
             # Start with the lower letters ... as they do not occurr that frequenctly.
@@ -25514,27 +25535,63 @@ zygote
                 # print(f"we have {start_letter}  {len(starts_with):6} We would pick {word_to_get} {words_to_add}")
                 for picked_word in words_to_add:
                     wordlist.append(picked_word)
+        shuffle(wordlist)
         return wordlist
 
-    def group_of_five(self, word_list):
+    def group(
+        self,
+        word_list: list,
+        max_letters: int = 125,
+        group_size: int = 5,
+        line_ending: str = " aa\n",
+    ) -> str:
+        """
+        With a large word list, generate a test message page. With the letters
+        grouped in to group_size, lines terminated with line_ending.
+
+        :param word_list: A list of words
+        :param max_letters: Data to be truncated after n letters. No spaces are counted.
+        :param group_size: Groups of n letters, default is 5
+        :param line_ending: Add something specific to the end of the line.
+        :return: a multi line string object with the text grouped and single spaced.
+
+        Example:
+            group(["ABCDE","EFG,"HIJ","KLMNOPQRST"], 3)
+
+        Will return
+
+                ABC aa
+                DEF aa
+                etc
+
+        """
+
         # Make 1 big string ... But we only need
         # 5 groups of 5 per line
         # 5 lines ...
         # 5*5*5 -> 125 letters
-        letters = "".join(word_list)[:125]
+        letters = "".join(word_list)[:max_letters]
         letters_and_spaces = "".join(
-            [(letters[i : i + 5]) + " " for i in range(0, len(letters), 5)]
+            [
+                (letters[i : i + group_size]) + " "
+                for i in range(0, len(letters), group_size)
+            ]
         )
         test_text = "".join(
             [
-                (letters_and_spaces[i : i + 30] + " aa\n")
+                (letters_and_spaces[i : i + 30] + line_ending)
                 for i in range(0, len(letters_and_spaces), 30)
             ]
         )
         return test_text
 
     def ntctest(self) -> str:
+        """
+        A simplification of the previous two methods.
+
+        :return: Test text as described in group
+        """
         word_list = self.getdata()
-        #print(f"words are {word_list}")
-        test_text = self.group_of_five(word_list)
+        # print(f"words are {word_list}")
+        test_text = self.group(word_list)
         return test_text

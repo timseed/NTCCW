@@ -9,17 +9,20 @@ setup(
     author='tim seed',
     author_email='tim@sy-edm.com',
     description='Philippine NTC Cw Mock exam generator',
-    install_requires=['numpy','scipy','daiquiri'],
+    install_requires=['numpy','scipy','daiquiri', 'm2r'],
     #
     # Dev Requirements installed using this option
     # mkdir ./dev
     # pip install -e .["dev"]
     extras_require = {
         'dev': [
+            'black',
+            'pylint',
             'pytest',
             'pytest-pep8',
             'pytest-cov',
             'sphinx',
+            'm2r',
             'recommonmark'
         ]
     }
