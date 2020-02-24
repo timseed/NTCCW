@@ -14,13 +14,6 @@ Proj to Md cw
 	:special-members:
 
 
-Proj to Md paris
-===========================
-.. automodule:: ham.cw.paris
-	:members:
-	:private-members:
-	:special-members:
-
 
 Proj to Md ntcexam
 ===========================

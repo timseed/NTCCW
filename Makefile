@@ -8,28 +8,21 @@ PYTEST = tests
 SRC = ham
 Package = NTCC-0.0a.tar.gz
 
+.DEFAULT_GOAL := fullcheck
+fullcheck:
+	$(MAKE) check
+	$(MAKE) test
+	$(MAKE) build
+	$(MAKE) install
 
-check:
-	$(PYTHON) -m black --check --diff $(SRC)
-	$(PYTHON) -m pylint -E            $(SRC)
-
-format:
-	$(PYTHON) -m black $(SRC)
-	$(PYTHON) -m black $(PYTEST)
-
-dist:
-	$(PYTHON) setup.py sdist
-
-test:
-	$(PYTHON) -m pytest $(PYTEST)
 
 .PHONY: build
 build:
 	$(PYTHON) setup.py sdist
-	-$(PIP) install "./dist/$(Package)"
 
-paris:
-	$(PYTHON) -m "ham.cw.paris"
+check:
+	$(PYTHON) -m black --check --diff $(SRC)
+	$(PYTHON) -m pylint -E            $(SRC)
 
 coverage:
 	$(PYCOV) erase
@@ -42,8 +35,25 @@ coverage:
 doc:
 	$(VENV_ACTIVATE) && cd Doc; make html
 
-.DEFAULT_GOAL := fullcheck
-fullcheck:
-	$(MAKE) check
-	$(MAKE) test
-	$(MAKE) build
+dist:
+	$(PYTHON) setup.py sdist
+
+format:
+	$(PYTHON) -m black $(SRC)
+	$(PYTHON) -m black $(PYTEST)
+
+.PHONY: install
+install:
+	${PYTHON} -m pip install -e .
+
+test:
+	$(PYTHON) -m pytest $(PYTEST)
+
+#
+# These are specific to this project
+#
+exam:
+	$(PYTHON) -m "ham.cw.ntcexam"
+
+paris:
+	$(PYTHON) -m "ham.cw.paris"

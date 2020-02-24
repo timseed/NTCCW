@@ -154,7 +154,7 @@ class Cw:
 
         return "".join(s).rstrip(self.endword).rstrip(self.endletter) + self.endword
 
-    def length_in_dits(self, cws:str) -> int:
+    def length_in_dits(self, cws: str) -> int:
         """
         length of string in dit units, include spaces
         :param cws: cw string encoded as .g-_
@@ -198,7 +198,7 @@ class Cw:
             msec = dit_len * self.length_in_dits(cws) * 32 + 7  # padded to 32
         else:
             msec = dit_len * (
-                    self.length_in_dits(cws) + 7
+                self.length_in_dits(cws) + 7
             )  # reserve +7 for the last pause
         msec = int(msec)
         # print(f"msec is set to {msec}")

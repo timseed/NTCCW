@@ -5,6 +5,7 @@ class GenText:
     """
     Class to generate easy to check, complete word data suitable for NTC Morse code exam.
     """
+
     def __init__(self):
         self.words = """
 a
@@ -25563,7 +25564,6 @@ zygote
                 etc
 
         """
-
 
         # Make 1 big string ... But we only need
         # 5 groups of 5 per line
