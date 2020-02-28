@@ -42,7 +42,7 @@ class Score:
         """
         Calculate Levenstein distance. This is the number of edits
         that needs to be made to make the strings the same.
-        
+
         All text is made lower-case.
         :return:
         """
