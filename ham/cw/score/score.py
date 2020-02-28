@@ -1,7 +1,7 @@
 import Levenshtein
 
 """
-Calculate simularaties between the files
+Calculate similarities between the files
 """
 
 
@@ -20,15 +20,29 @@ class Score:
         with open(f2, "rt") as if2:
             self.str2 = if2.read()
 
-    def _setstr1(self,str1):
-        self.str1=str1
+    def _setstr1(self, str1):
+        """
+        Internal method to set the value of the first string.
 
-    def _setstr2(self,str2):
-        self.str2=str2
+        :param str1: String to store
+        :return: Nothing
+        """
+        self.str1 = str1
+
+    def _setstr2(self, str2):
+        """
+        Internal method to set the value of the second string.
+
+        :param str2: String to store
+        :return: Nothing
+        """
+        self.str2 = str2
 
     def get_score(self):
         """
-        Calculate Levenstein distance.
+        Calculate Levenstein distance. This is the number of edits
+        that needs to be made to make the strings the same.
+        
         All text is made lower-case.
         :return:
         """
