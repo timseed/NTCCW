@@ -1,4 +1,5 @@
 from random import randint, shuffle
+from glob import glob
 
 
 class GenText:
@@ -25605,3 +25606,12 @@ zygote
         rnd_letters = ["".join(chr(97 + randint(0, 25)) for l in range(0, 125))]
         test_text = self.group(rnd_letters)
         return test_text
+
+    def count_wav(self) -> int:
+        """
+        See how many .wav files there are in the current directory
+        So I can re-run the tests. And create new files.
+
+        :return: count of Wav files
+        """
+        return len(glob("*.wav"))

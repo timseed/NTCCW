@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 setup(
     name='NTCCW',
-    version='0.0.b',
+    version='0.0.c',
     packages=find_packages(),
     url='https://github.com/timseed/NTCCW.git',
     license='GNU',

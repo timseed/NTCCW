@@ -17,6 +17,11 @@ class TestScore(TestCase):
         self.score._setstr2("abc")
         self.assertEqual(self.score.get_score(), 0)
 
+    def test_same_spaces(self):
+        self.score._setstr1("abc")
+        self.score._setstr2("a b c")
+        self.assertEqual(self.score.get_score(), 0)
+
     def test_same_case_insensative(self):
         self.score._setstr1("abc")
         self.score._setstr2("ABC")

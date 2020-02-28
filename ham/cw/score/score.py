@@ -47,4 +47,7 @@ class Score:
         :return:
         """
 
-        return Levenshtein.distance(self.str1.lower(), self.str2.lower())
+        return Levenshtein.distance(
+            self.str1.replace(" ", "").replace("\n", "").lower(),
+            self.str2.replace(" ", "").replace("\n", "").lower(),
+        )

@@ -41,6 +41,11 @@ format:
 	$(PYTHON) -m black $(SRC)
 	$(PYTHON) -m black $(PYTEST)
 
+clean:
+	rm -Rf NTCCW.egg-info/
+	-rm -Rf dist/:wq
+
+
 .PHONY: install
 install:
 	${PYTHON} -m pip install -e .
