@@ -25543,7 +25543,7 @@ zygote
         word_list: list,
         max_letters: int = 125,
         group_size: int = 5,
-        line_ending: str = " aa\n",
+        line_ending: str = " aa \n",
     ) -> str:
         """
         With a large word list, generate a test message page. With the letters
@@ -25594,4 +25594,14 @@ zygote
         word_list = self.getdata()
         # print(f"words are {word_list}")
         test_text = self.group(word_list)
+        return test_text
+
+    def random_letters(self) -> str:
+        """
+        Generate random Letters only
+        :return: Test text
+        """
+
+        rnd_letters = ["".join(chr(97 + randint(0, 25)) for l in range(0, 125))]
+        test_text = self.group(rnd_letters)
         return test_text

@@ -1,15 +1,15 @@
-from setuptools import setup
 
+from setuptools import setup, find_packages
 setup(
     name='NTCCW',
-    version='0.0.a',
-    packages=['ham', 'ham.cw', 'ham.cw.ntcexam', 'tests'],
+    version='0.0.b',
+    packages=find_packages(),
     url='https://github.com/timseed/NTCCW.git',
     license='GNU',
     author='tim seed',
     author_email='tim@sy-edm.com',
     description='Philippine NTC Cw Mock exam generator',
-    install_requires=['numpy','scipy','daiquiri', 'm2r'],
+    install_requires=['numpy','scipy','daiquiri', 'm2r','python-Levenshtein'],
     #
     # Dev Requirements installed using this option
     # mkdir ./dev
