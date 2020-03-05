@@ -7,6 +7,7 @@ import logging
 if __name__ == "__main__":
     logger = logging.getLogger(__name__)
     parser = argparse.ArgumentParser(description="NTC Cw Parser")
+    parser.add_argument('-wpm','--wpm',dest='wpm',default=5,required=False,type=int,help="Words per minute")
     # These are the switches - they do not require params
     parser.add_argument(
         "-d",
@@ -39,7 +40,7 @@ if __name__ == "__main__":
         print("NTC text chosen")
     # print(f"Test_text \n{test_as_str}")
     wav_cnt = ntc_gen_text.count_wav()
-    morse = Cw()
+    morse = Cw(wpm=args.wpm)
     print(f"Creating NTC{wav_cnt}.wav")
     morse.text_to_wav(test_as_str, f"NTC{wav_cnt}.wav")
     with open(f"NTC{wav_cnt}.txt", "wt") as cw_text:

@@ -62,7 +62,11 @@ exam:
 random:
 	$(PYTHON) -m "ham.cw.ntcexam" -r
 
+quickexam:
+	$(PYTHON) -m "ham.cw.ntcexam" -w 15
 
+quickrandom:
+	$(PYTHON) -m "ham.cw.ntcexam" -r -w 15
 
 paris:
 	$(PYTHON) -m "ham.cw.paris"
