@@ -2,7 +2,7 @@
 VENV_NAME?=pe38
 VENV_ACTIVATE=. ~/$(VENV_NAME)/bin/activate
 PYTHON=~/${VENV_NAME}/bin/python3
-PIP = pip3
+PIP = ~/${VENV_NAME}/bin/pip3 
 PYCOV = $(PYTHON) -m coverage
 PYTEST = tests
 SRC = ham
@@ -14,6 +14,10 @@ fullcheck:
 	$(MAKE) test
 	$(MAKE) build
 	$(MAKE) install
+
+
+dev:
+	$(PIP) install -e .["dev"]
 
 .PHONY: build
 build:
@@ -29,6 +33,7 @@ coverage:
 	-$(PYCOV) run    -m "ham.cw.ntcexam"
 	-$(PYCOV) run -a -m pytest
 	$(PYCOV) report --source=$(SRC) -m > ./coverage.txt
+
 
 .PHONY: doc
 doc:
