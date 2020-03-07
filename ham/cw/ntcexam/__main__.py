@@ -7,7 +7,15 @@ import logging
 if __name__ == "__main__":
     logger = logging.getLogger(__name__)
     parser = argparse.ArgumentParser(description="NTC Cw Parser")
-    parser.add_argument('-wpm','--wpm',dest='wpm',default=5,required=False,type=int,help="Words per minute")
+    parser.add_argument(
+        "-wpm",
+        "--wpm",
+        dest="wpm",
+        default=5,
+        required=False,
+        type=int,
+        help="Words per minute",
+    )
     # These are the switches - they do not require params
     parser.add_argument(
         "-d",
@@ -44,8 +52,7 @@ if __name__ == "__main__":
     print(f"Creating NTC{wav_cnt}.wav")
     morse.text_to_wav(test_as_str, f"NTC{wav_cnt}.wav")
     with open(f"NTC{wav_cnt}.txt", "wt") as cw_text:
-        cw_text.write(
-            f"This is the Sample NTC CW Exam.\n\n\n{test_as_str}\n\n\n\n\nGood Luck.\n\n"
-        )
+        cw_text.write(f"{test_as_str}")
     print(f"Please find 2 files - NTC{wav_cnt}.wav and NTC{wav_cnt}.txt")
-
+    print(f"To run I suggest sleep 5s && afplay NTC{wav_cnt}.wav")
+    print(f"To check diff -b NTC{wav_cnt}.txt test.txt")
