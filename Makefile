@@ -48,7 +48,9 @@ format:
 
 clean:
 	rm -Rf NTCCW.egg-info/
-	-rm -Rf dist/:wq
+	-rm -Rf dist/
+	-rm -Rf *.wav
+	-rm -Rf *.txt
 
 
 .PHONY: install
